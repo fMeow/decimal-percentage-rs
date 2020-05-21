@@ -1,13 +1,13 @@
 [package]
 name = "decimal-percentage"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Guoli Lyu <guoli-lv@hotmail.com>"]
 edition = "2018"
 readme = "README.md"
 license = "MIT"
 description = "Percentage type with rust_decimal"
-repository = "https://github.com/fMeow/arangors"
-documentation = "https://docs.rs/arangors"
+repository = "https://github.com/fMeow/decimal-percentage-rs"
+documentation = "https://docs.rs/decimal-percentage"
 keywords = ["decimal", "percentage"]
 exclude = [
     ".gitignore",
@@ -15,6 +15,9 @@ exclude = [
     "tests/**/*",
 ]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[badges]
+maintenance = { status = "actively-developed" }
 
 [dependencies]
 rust_decimal = "1"
