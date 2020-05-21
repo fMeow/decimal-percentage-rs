@@ -1,0 +1,37 @@
+name: Rust
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+#      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
+
+      - name: rustfmt
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+
+      - name: check build
+        uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: --all --bins --examples --tests --verbose
+
+      - name: tests
+        uses: actions-rs/cargo@v1
+        timeout-minutes: 40
+        with:
+          command: test
+          args: --all --verbose --no-fail-fast -- --nocapture
+
+      - name: publish
+        uses: "thiagoarrais/action-cargo@master"
+        needs: "Tag"
+        args: "publish"
+        secrets: ["CRATES_AUTH_TOKEN"]
