@@ -3,8 +3,8 @@ use std::fmt::Formatter;
 use std::ops::{Add, Mul, Sub};
 use std::str::FromStr;
 
-use rust_decimal::Decimal;
 use rust_decimal::prelude::*;
+use rust_decimal::Decimal;
 
 #[derive(Copy, Clone, PartialEq, Eq)]
 pub struct Percentage(Decimal);
