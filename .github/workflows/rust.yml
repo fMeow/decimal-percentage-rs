@@ -30,8 +30,17 @@ jobs:
           command: test
           args: --all --verbose --no-fail-fast -- --nocapture
 
+  publish:
+    name: Publish Package
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
       - name: publish
-        uses: "thiagoarrais/action-cargo@master"
-        needs: "Tag"
-        args: "publish"
-        secrets: ["CRATES_AUTH_TOKEN"]
+        shell: bash
+        env:
+          SUPER_SECRET: ${{ secrets.CARGO_TOKEN }}
+        run: |
+          cargo login "$CARGO_TOKEN"
+          cargo publish
+

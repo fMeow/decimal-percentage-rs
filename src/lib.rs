@@ -1,3 +1,5 @@
+//! # Percentage Type with Decimal
+use std::convert::TryFrom;
 use std::fmt;
 use std::fmt::Formatter;
 use std::ops::{Add, Mul, Sub};
@@ -6,6 +8,19 @@ use std::str::FromStr;
 use rust_decimal::prelude::*;
 use rust_decimal::Decimal;
 
+/// Percentage Type
+///
+/// - Example:
+/// ```rust
+/// # use decimal_percentage::Percentage;
+/// # use std::convert::TryFrom;
+/// let p1 = Percentage::from(0.1f64);
+/// let p2 = Percentage::from(0.1f32);
+/// let p3 = Percentage::try_from("0.1").unwrap();
+///
+/// assert_eq!(p1 + p2, Percentage::from(0.2));
+/// assert_eq!(p1 + 0.2, Percentage::from(0.3));
+/// ```
 #[derive(Copy, Clone, PartialEq, Eq)]
 pub struct Percentage(Decimal);
 
@@ -27,9 +42,10 @@ impl From<f32> for Percentage {
     }
 }
 
-impl From<&str> for Percentage {
-    fn from(p: &str) -> Self {
-        Percentage(Decimal::from_str(p).unwrap())
+impl TryFrom<&str> for Percentage {
+    type Error = rust_decimal::Error;
+    fn try_from(p: &str) -> Result<Self, Self::Error> {
+        Ok(Percentage(Decimal::from_str(p)?))
     }
 }
 
@@ -209,7 +225,7 @@ mod tests {
     #[test]
     fn percentage() {
         let p1 = Percentage::from(0.5);
-        let p2 = Percentage::from("0.00000015");
+        let p2 = Percentage::try_from("0.00000015").unwrap();
         let p3 = Percentage::from(0.2);
         let p4 = Percentage::from(1.2);
 
@@ -221,7 +237,7 @@ mod tests {
         assert_eq!(p1 + 1, Percentage::from(1.5));
 
         assert_eq!(p1 - p3, Percentage::from(0.3));
-        assert_eq!(p1 + p2, Percentage::from("0.50000015"));
+        assert_eq!(p1 + p2, Percentage::try_from("0.50000015").unwrap());
         assert_eq!(p4 - p3, 1.0.into());
 
         assert_eq!(p1 * 100, 50);
