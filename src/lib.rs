@@ -47,6 +47,7 @@ use std::str::FromStr;
 
 use rust_decimal::prelude::*;
 use rust_decimal::Decimal;
+use serde::{Deserialize, Serialize};
 
 /// Percentage Type
 ///
@@ -61,7 +62,7 @@ use rust_decimal::Decimal;
 /// assert_eq!(p1 + p2, Percentage::from(0.2));
 /// assert_eq!(p1 + 0.2, Percentage::from(0.3));
 /// ```
-#[derive(Copy, Clone, PartialEq, Eq)]
+#[derive(Copy, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Percentage(Decimal);
 
 impl From<Decimal> for Percentage {
