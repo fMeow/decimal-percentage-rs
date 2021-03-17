@@ -1,24 +1,22 @@
 [package]
 name = "decimal-percentage"
-version = "0.1.1"
-authors = ["Guoli Lyu <guoli-lv@hotmail.com>"]
+version = "0.1.2"
+authors = [ "Guoli Lyu <guoli-lv@hotmail.com>" ]
 edition = "2018"
 readme = "README.md"
 license = "MIT"
 description = "Percentage type with rust_decimal"
 repository = "https://github.com/fMeow/decimal-percentage-rs"
 documentation = "https://docs.rs/decimal-percentage"
-keywords = ["decimal", "percentage"]
-exclude = [
-    ".gitignore",
-    ".github",
-    "tests/**/*",
-]
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+keywords = [ "decimal", "percentage" ]
+exclude = [ ".gitignore", ".github", "tests/**/*" ]
 
-[badges]
-maintenance = { status = "actively-developed" }
+[badges.maintenance]
+status = "actively-developed"
 
 [dependencies]
 rust_decimal = "1"
-serde = { version = "1.0.123", features = ["derive"] }
+
+  [dependencies.serde]
+  version = "1.0.123"
+  features = [ "derive" ]
