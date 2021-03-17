@@ -21,3 +21,4 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 rust_decimal = "1"
+serde = { version = "1.0.123", features = ["derive"] }
