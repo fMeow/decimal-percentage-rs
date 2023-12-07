@@ -90,6 +90,13 @@ impl TryFrom<&str> for Percentage {
     }
 }
 
+impl FromStr for Percentage {
+    type Err = rust_decimal::Error;
+    fn from_str(p: &str) -> Result<Self, Self::Err> {
+        Self::try_from(p)
+    }
+}
+
 impl fmt::Debug for Percentage {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         f.write_str(&format!("{}%", self.0 * Decimal::from(100)))
