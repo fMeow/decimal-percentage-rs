@@ -7,7 +7,8 @@
 [![Crates.io](https://img.shields.io/crates/v/decimal-percentage.svg)](https://crates.io/crates/decimal-percentage)
 [![decimal-percentage](https://docs.rs/decimal-percentage/badge.svg)](https://docs.rs/decimal-percentage)
 
-A type to represent percentage with high precision thanks to `rust_decimal`.
+A type to represent percentage with high precision
+thanks to [`rust_decimal`](https://docs.rs/rust_decimal/latest/rust_decimal/).
 
 A percentage can perform addition, subtraction and multiplication.
 
